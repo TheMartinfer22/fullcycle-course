@@ -13,12 +13,12 @@ type Book struct {
 	Wg            *sync.WaitGroup
 }
 
-func NewBook(orderChan chan *Order, OrderChanOut chan *Order, wg *sync.WaitGroup) *Book {
+func NewBook(orderChan chan *Order, orderChanOut chan *Order, wg *sync.WaitGroup) *Book {
 	return &Book{
 		Order:         []*Order{},
 		Transactions:  []*Transaction{},
 		OrdersChan:    orderChan,
-		OrdersChanOut: OrderChanOut,
+		OrdersChanOut: orderChanOut,
 		Wg:            wg,
 	}
 }
@@ -59,7 +59,7 @@ func (b *Book) Trade() {
 					b.OrdersChanOut <- buyOrder
 					b.OrdersChanOut <- order
 					if buyOrder.PendingShares > 0 {
-						sellOrders.Push(buyOrder)
+						buyOrders.Push(buyOrder)
 					}
 				}
 			}

@@ -20,7 +20,8 @@ func NewOrder(orderID string, investor *Investor, asset *Asset, shares int, pric
 		Shares:        shares,
 		PendingShares: shares,
 		Price:         price,
-		OrderType:     "OPEN",
+		OrderType:     orderType,
+		Status:        "OPEN",
 		Transactions:  []*Transaction{},
 	}
 }
